@@ -37,6 +37,7 @@ import { OrderComponent } from './pages/order/order.component';
 
 import { DateAdapter } from '@angular/material/core';
 import { DateFormat } from './date-format';
+import { ReceiveComponent } from './pages/receive/receive.component';
 
 
 
@@ -56,6 +57,7 @@ import { DateFormat } from './date-format';
     LoaidngHourglassComponent,
     LoaidngRollerComponent,
     OrderComponent,
+    ReceiveComponent,
   ],
   imports: [
     BrowserModule,
