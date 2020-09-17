@@ -9,11 +9,11 @@
     </div>
   </div>
   <div *ngIf="!isLoading"  fxLayout="column" fxLayoutAlign="center"  fxFlex="90" class="mr-1">
-    <mat-card>
+    <mat-card style="min-height: 80vh;">
       <mat-card-title>
       </mat-card-title>
       <mat-card-title *ngIf="!isLoading" style="text-align: center">Login</mat-card-title>
-      <mat-card-content>
+      <mat-card-content >
         <form #authForm="ngForm" (ngSubmit)="onSubmit(authForm)" *ngIf="!isLoading">
           <div class="container" fxLayout="column" fxLayout.xs="column" fxLayoutAlign="start" fxLayoutGap="10px" fxLayoutGap.xs="0">
             <mat-form-field>
@@ -32,11 +32,6 @@
               <input type="text" matInput id="password" class="" ngModel name="password" placeholder="Password" required>
             </mat-form-field>
           </div>
-
-    <!--      <p *ngIf="error" class="error">-->
-    <!--        {{ error }}-->
-    <!--      </p>-->
-
           <div class="button">
             <button mat-button class="btn btn-primary" type="submit" >Login</button>
           </div>

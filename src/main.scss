@@ -1,8 +1,9 @@
-$color-red: #e85704;
+$color-red: rgba(232, 87, 4, 0.82);
 $color-yellow-1: #e89e05;
 $color-yellow-2: #e8c50e;
 $color-yellow-3: #dce815;
 $base-color: #c6538c;
+$color-black-68: #444444;
 
 
 @mixin linear-gradient($direction, $color-stops...) {
@@ -56,8 +57,8 @@ body{
   min-height: 100%;
   width: 100%;
   background-color: antiquewhite;
-  @include linear-gradient(to bottom, $color-red 0%, #e88007 50%, #e8af0a 100%);
-  background-image: url("assets/background/zhilkooleg-C5ayHUXMMX8-unsplash.jpg");
+  @include linear-gradient(to bottom, $color-black-68 0%, rgba(14, 29, 96, 0.74) 50%, #e8af0a 100%);
+  //background-image: url("assets/background/zhilkooleg-C5ayHUXMMX8-unsplash.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
