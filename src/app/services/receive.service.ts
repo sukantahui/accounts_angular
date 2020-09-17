@@ -5,6 +5,9 @@ import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {GlobalVariable} from '../shared/global';
 import {catchError, tap} from 'rxjs/operators';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {formatDate} from '@angular/common';
+import {Transaction} from '../models/transaction.model';
 
 
 @Injectable({
@@ -12,16 +15,51 @@ import {catchError, tap} from 'rxjs/operators';
 })
 // @ts-ignore
 export class ReceiveService {
-IncomeLedgers: Ledger[] = [];
-IncomeLedgerSubject = new Subject<Ledger[]>();
+  IncomeLedgers: Ledger[] = [];
+  IncomeLedgerSubject = new Subject<Ledger[]>();
+
+  incomeTransactions: Transaction[] = [];
+  incomeTransactionSubject = new Subject<Transaction[]>();
+
+  transactionForm: FormGroup;
+  private userData: {id: number, personName: string, _authKey: string, personTypeId: number};;
 
   constructor(private http: HttpClient, private router: Router) {
+    this.userData = JSON.parse(localStorage.getItem('user'));
+    if (!this.userData){
+      return;
+    }else{
+      console.log(this.userData);
+    }
+
     this.http.get(GlobalVariable.BASE_API_URL + '/incomeLedgers')
       .pipe(catchError(this.handleError), tap((response: {success: number, data: Ledger[]}) => {
         const {data} = response;
         this.IncomeLedgers = data;
         this.IncomeLedgerSubject.next([...this.IncomeLedgers]);
       })).subscribe();
+
+    this.http.get(GlobalVariable.BASE_API_URL + '/incomeTransactions')
+      .pipe(catchError(this.handleError), tap((response: {success: number, data: Transaction[]}) => {
+        const {data} = response;
+        this.incomeTransactions = data;
+        this.incomeTransactionSubject.next([...this.incomeTransactions]);
+      })).subscribe();
+
+    // form creation
+    const now = new Date();
+    const val = formatDate(now, 'yyyy-MM-dd', 'en');
+    this.transactionForm = new FormGroup({
+      id: new FormControl(null),
+      transaction_date: new FormControl(val, [Validators.required]),
+      ledger_id: new FormControl(null, [Validators.required]),
+      asset_id: new FormControl(1, [Validators.required]),           // purchase
+      voucher_number: new FormControl(null),
+      amount: new FormControl(0, [Validators.required]),
+      voucher_id: new FormControl(1, [Validators.required]),
+      particulars: new FormControl(null, [Validators.maxLength(255)]),
+      user_id: new FormControl(this.userData.id, [Validators.required])
+    });
   }// end of constructor
 
   getIncomeLedgersUpdateListener(){
@@ -32,6 +70,20 @@ IncomeLedgerSubject = new Subject<Ledger[]>();
     return [...this.IncomeLedgers];
   }
 
+  getIncomeTransactionUpdateListener(){
+    return this.incomeTransactionSubject.asObservable();
+  }
+
+  getIncomeTransactions(){
+    return [...this.incomeTransactions];
+  }
+
+  saveIncomeTransaction(transactionFormValue){
+    return this.http.post<{success: number, data: Transaction}>('http://127.0.0.1:8000/api/transactions', transactionFormValue)
+      .pipe(catchError(this.handleError), tap((response: {success: number, data: Transaction}) => {
+
+      }));
+  }
 
   private handleError(errorResponse: HttpErrorResponse){
     // when your api server is not working

@@ -33,8 +33,6 @@ import { LoaidngRippleComponent } from './shared/loaidng-ripple/loaidng-ripple.c
 import { LoaidngEllipsisComponent } from './shared/loaidng-ellipsis/loaidng-ellipsis.component';
 import { LoaidngHourglassComponent } from './shared/loaidng-hourglass/loaidng-hourglass.component';
 import { LoaidngRollerComponent } from './shared/loaidng-roller/loaidng-roller.component';
-import { OrderComponent } from './pages/order/order.component';
-
 import { DateAdapter } from '@angular/material/core';
 import { DateFormat } from './date-format';
 import { ReceiveComponent } from './pages/receive/receive.component';
@@ -56,7 +54,6 @@ import { ReceiveComponent } from './pages/receive/receive.component';
     LoaidngEllipsisComponent,
     LoaidngHourglassComponent,
     LoaidngRollerComponent,
-    OrderComponent,
     ReceiveComponent,
   ],
   imports: [

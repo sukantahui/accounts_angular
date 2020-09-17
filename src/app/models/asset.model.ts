@@ -3,6 +3,6 @@
 export class Asset{
   // @ts-ignore
   id?: number;
-  asset_name: number;
+  assets_name: string;
   opening_balance: number;
 }

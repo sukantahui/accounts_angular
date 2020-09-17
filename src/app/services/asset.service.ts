@@ -3,7 +3,7 @@ import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {Router} from '@angular/router';
 import {Asset} from '../models/asset.model';
 import {Subject, throwError} from 'rxjs';
-import {GlobalVariable} from "../shared/global";
+import {GlobalVariable} from '../shared/global';
 import {catchError, tap} from 'rxjs/operators';
 import {Ledger} from '../models/ledger.model';
 

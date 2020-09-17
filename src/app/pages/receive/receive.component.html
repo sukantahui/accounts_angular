@@ -1,12 +1,134 @@
 <div fxLayout.xs="column" fxLayout="row" fxFlexFill>
-  <div fxFlex="40" >
-    <div style="min-height: 92vh; background-color: rgba(3,2,12,0.81);"></div>
+  <div fxFlex="40" id="receive-left">
+    <div style="min-height: 92vh;">
+      <mat-card class="ml-2 mt-2 mr-2 form-mat-card" >
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"></div>
+          <mat-card-title>
+            <div fxLayout="row" fxLayoutAlign="end center" fxFlexFill>
+              Income Entry
+            </div>
+          </mat-card-title>
+        </mat-card-header>
+        <div class="form-container">
+          <form [formGroup] = transactionForm>
+            <div class="container" fxLayout="column" fxLayout.xs="column" fxLayoutAlign="start" fxLayoutGap="10px" fxLayoutGap.xs="0">
+              <!--Transaction Date and Transaction Number-->
+              <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start" fxLayoutGap="10px" fxLayoutGap.xs="0">
+                <!--Transaction Date-->
+                <mat-form-field class="example-full-width" fxFlex="40">
+                  <mat-label>Choose a date</mat-label>
+                  <input matInput [matDatepicker]="picker" (dateChange)="handleTransactionDateChange($event)" formControlName="transaction_date" >
+                  <mat-datepicker-toggle matSuffix [for]="picker">
+                    <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+                  </mat-datepicker-toggle>
+                  <mat-datepicker #picker ></mat-datepicker>
+                </mat-form-field>
+
+              </div>
+              <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start" fxLayoutGap="10px" fxLayoutGap.xs="0">
+                <mat-form-field fxFlex="50">
+                  <mat-label>Income</mat-label>
+                  <mat-select  formControlName="ledger_id">
+                    <mat-option *ngFor="let ledger of incomeLedgers" [value]="ledger.id">
+                      {{ledger.ledger_name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start" fxLayoutGap="10px" fxLayoutGap.xs="0">
+                <mat-form-field fxFlex="50">
+                  <mat-label>Transaction Through</mat-label>
+                  <mat-select  formControlName="asset_id">
+                    <mat-option *ngFor="let asset of assets" [value]="asset.id">
+                      {{asset.assets_name}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </div>
+
+              <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start" fxLayoutGap="10px" fxLayoutGap.xs="0">
+                <mat-form-field fxFlex="50">
+                  <mat-label>Amount</mat-label>
+                    <input matInput placeholder="Invoice" (click)="$event.target.select()" formControlName="amount">
+                </mat-form-field>
+              </div>
+
+              <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start" fxLayoutGap="10px" fxLayoutGap.xs="0">
+                <mat-form-field fxFlex="50">
+                  <mat-label>Particulars</mat-label>
+                  <textarea  matInput rows="4" cols="50" formControlName="particulars"></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+
+
+
+
+          </form>
+          <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end" fxLayoutGap="10px" fxLayoutGap.xs="0" >
+            <button mat-button   mat-stroked-button>Clear</button>
+            <button mat-button (click)="saveIncomeTransaction()"   mat-stroked-button>Save</button>
+          </div>
+        </div>
+      </mat-card>
+    </div>
   </div>
-  <div fxFlex="60" style="background-color: rgba(3,2,12,0.81);">
+  <div fxFlex="60" id="receive-right">
+    <mat-card class="ml-2 mt-2 mr-2 form-mat-card" >
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>
+          <div fxLayout="row" fxLayoutAlign="end center" fxFlexFill>
+            Income Transactions
+          </div>
+        </mat-card-title>
+      </mat-card-header>
+      <div class="form-container">
+        <table class="table" id="income-transaction-table">
+          <thead>
+          <tr>
+            <th class="w-5">SL.</th>
+            <th class="w-10">Date</th>
+            <th class="w-25">Purpose</th>
+            <th class="w-15">Type</th>
+            <th class="w-20">amount</th>
+          </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of incomeTransactions; let indexOfElement = index;">
+              <td>{{indexOfElement+1}}</td>
+              <td>{{item.transaction_date}}</td>
+              <td>{{item.ledger_name}}</td>
+              <td>{{item.assets_name}}</td>
+              <td>{{item.amount}}</td>
+            </tr>
+          </tbody>
+          <tfoot>
+          </tfoot>
+        </table>
+      </div>
+    </mat-card>
+  </div>
+</div>
+
+<div fxLayout.xs="column" fxLayout="row" fxLayoutAlign="space-between stretch"  id="developer-div" *ngIf="true">
+  <div fxLayout="column" fxFlex="25" class="mr-1" style="background-color: #cdd20c">
     <pre>
-      incomeLedgers = {{incomeLedgers | json}}
-      assets = {{assets | json}}
+      transactionMasterForm={{this.transactionForm.valid | json}}
+      transactionMasterForm={{this.transactionForm.value | json}}
     </pre>
+  </div>
+  <div fxLayout="column" fxFlex="50" class="mr-1" style="background-color: #f2f2f2">
+    <pre>
+       incomeTransactions = {{incomeTransactions | json}}
+    </pre>
+
+  </div>
+
+
+  <div fxLayout="column" fxFlex="25" class="mr-1" style="background-color: #f2f2f2">
   </div>
 </div>
 
