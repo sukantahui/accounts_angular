@@ -106,7 +106,8 @@ export class PaymentService {
   }
 
   saveExpenditureTransaction(transactionFormValue) {
-    return this.http.post<{success: number, data: Transaction}>(GlobalVariable.BASE_API_URL + '/incomeTransactions', transactionFormValue)
+    // tslint:disable-next-line:max-line-length
+    return this.http.post<{success: number, data: Transaction}>(GlobalVariable.BASE_API_URL + '/expenditureTransactions', transactionFormValue)
       .pipe(catchError(this.handleError), tap((response: {success: number, data: Transaction}) => {
         this.expenditureTransactions.unshift( response.data);
         this.expenditureTransactionSubject.next([...this.expenditureTransactions]);

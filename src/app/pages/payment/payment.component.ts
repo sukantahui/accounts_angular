@@ -66,11 +66,11 @@ export class PaymentComponent implements OnInit {
             Swal.fire({
               position: 'top-end',
               icon: 'success',
-              title: 'Sale saved',
+              title: 'Expenditure saved',
               showConfirmButton: false,
               timer: 3000
             }).then(r => {
-              this.transactionForm.patchValue({ledger_id: null, asset_id: 1, amount: 0, particulars: null});
+              this.transactionForm.patchValue({ledger_id: null, asset_id: 1, amount: 0, particulars: null, voucher_number: null});
             });
           }
         }, (error) => {
