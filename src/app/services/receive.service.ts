@@ -15,8 +15,8 @@ import {Transaction} from '../models/transaction.model';
 })
 // @ts-ignore
 export class ReceiveService {
-  IncomeLedgers: Ledger[] = [];
-  IncomeLedgerSubject = new Subject<Ledger[]>();
+  incomeLedgers: Ledger[] = [];
+  incomeLedgerSubject = new Subject<Ledger[]>();
 
   incomeTransactions: Transaction[] = [];
   incomeTransactionSubject = new Subject<Transaction[]>();
@@ -35,8 +35,8 @@ export class ReceiveService {
     this.http.get(GlobalVariable.BASE_API_URL + '/incomeLedgers')
       .pipe(catchError(this.handleError), tap((response: {success: number, data: Ledger[]}) => {
         const {data} = response;
-        this.IncomeLedgers = data;
-        this.IncomeLedgerSubject.next([...this.IncomeLedgers]);
+        this.incomeLedgers = data;
+        this.incomeLedgerSubject.next([...this.incomeLedgers]);
       })).subscribe();
 
     this.http.get(GlobalVariable.BASE_API_URL + '/incomeTransactions')
@@ -63,11 +63,11 @@ export class ReceiveService {
   }// end of constructor
 
   getIncomeLedgersUpdateListener(){
-    return this.IncomeLedgerSubject.asObservable();
+    return this.incomeLedgerSubject.asObservable();
   }
 
   getIncomeLedgers(){
-    return [...this.IncomeLedgers];
+    return [...this.incomeLedgers];
   }
 
   getIncomeTransactionUpdateListener(){

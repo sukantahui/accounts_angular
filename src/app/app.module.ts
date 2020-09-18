@@ -36,6 +36,7 @@ import { LoaidngRollerComponent } from './shared/loaidng-roller/loaidng-roller.c
 import { DateAdapter } from '@angular/material/core';
 import { DateFormat } from './date-format';
 import { ReceiveComponent } from './pages/receive/receive.component';
+import { PaymentComponent } from './pages/payment/payment.component';
 
 
 
@@ -55,6 +56,7 @@ import { ReceiveComponent } from './pages/receive/receive.component';
     LoaidngHourglassComponent,
     LoaidngRollerComponent,
     ReceiveComponent,
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,
