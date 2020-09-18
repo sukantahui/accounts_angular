@@ -46,7 +46,7 @@ export class PaymentService {
       asset_id: new FormControl(1, [Validators.required]),           // purchase
       voucher_number: new FormControl(null),
       amount: new FormControl(0, [Validators.required]),
-      voucher_id: new FormControl(1, [Validators.required]),
+      voucher_id: new FormControl(2, [Validators.required]),
       particulars: new FormControl(null, [Validators.maxLength(255)]),
       user_id: new FormControl(this.userData.id, [Validators.required])
     });

@@ -7,6 +7,7 @@ import {Transaction} from '../../models/transaction.model';
 import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 import {formatDate} from '@angular/common';
 import Swal from 'sweetalert2';
+import {AssetService} from '../../services/asset.service';
 
 @Component({
   selector: 'app-payment',
@@ -22,7 +23,7 @@ export class PaymentComponent implements OnInit {
   searchTerm: any;
   pageSize = 10;
   p = 1;
-  constructor(private paymentService: PaymentService) {}
+  constructor(private paymentService: PaymentService, private asstService: AssetService) {}
 
   ngOnInit(): void {
     this.expenditureLedgers = this.paymentService.getExpenditureLedgers();
@@ -30,6 +31,12 @@ export class PaymentComponent implements OnInit {
       this.expenditureLedgers = data;
     });
     this.transactionForm = this.paymentService.transactionForm;
+
+    // assets
+    this.assets = this.asstService.getAssets();
+    this.asstService.getAssetsUpdateListener().subscribe((data: Asset[]) => {
+      this.assets = data;
+    });
   } // end of ngonit
 
   handleTransactionDateChange($event: MatDatepickerInputEvent<unknown>) {
