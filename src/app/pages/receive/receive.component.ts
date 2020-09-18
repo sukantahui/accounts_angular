@@ -20,6 +20,9 @@ assets: Asset[] = [];
 incomeTransactions: Transaction[] = [];
 
 transactionForm: FormGroup
+  searchTerm: any;
+  pageSize = 10;
+  p = 1;
 
   constructor(private receiveService: ReceiveService, private asstService: AssetService) { }
 
@@ -77,6 +80,8 @@ transactionForm: FormGroup
               title: 'Sale saved',
               showConfirmButton: false,
               timer: 3000
+            }).then(r => {
+              this.transactionForm.patchValue({ledger_id: null, asset_id: 1, amount: 0, particulars: null});
             });
           }
         }, (error) => {
@@ -92,5 +97,11 @@ transactionForm: FormGroup
         // will not be saved
       }
     });
+  }
+
+  clearTransactionForm() {
+    const now = new Date();
+    const val = formatDate(now, 'yyyy-MM-dd', 'en');
+    this.transactionForm.patchValue({transaction_date: val, ledger_id: null, asset_id: 1, amount: 0, particulars: null});
   }
 }

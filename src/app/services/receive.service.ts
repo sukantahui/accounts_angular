@@ -22,7 +22,7 @@ export class ReceiveService {
   incomeTransactionSubject = new Subject<Transaction[]>();
 
   transactionForm: FormGroup;
-  private userData: {id: number, personName: string, _authKey: string, personTypeId: number};;
+  private readonly userData: {id: number, personName: string, _authKey: string, personTypeId: number};
 
   constructor(private http: HttpClient, private router: Router) {
     this.userData = JSON.parse(localStorage.getItem('user'));
@@ -79,9 +79,10 @@ export class ReceiveService {
   }
 
   saveIncomeTransaction(transactionFormValue){
-    return this.http.post<{success: number, data: Transaction}>('http://127.0.0.1:8000/api/transactions', transactionFormValue)
+    return this.http.post<{success: number, data: Transaction}>(GlobalVariable.BASE_API_URL + '/incomeTransactions', transactionFormValue)
       .pipe(catchError(this.handleError), tap((response: {success: number, data: Transaction}) => {
-
+          this.incomeTransactions.unshift( response.data);
+          this.incomeTransactionSubject.next([...this.incomeTransactions]);
       }));
   }
 
