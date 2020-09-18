@@ -30,7 +30,7 @@
                 <mat-form-field fxFlex="50">
                   <mat-label>Income</mat-label>
                   <mat-select  formControlName="ledger_id">
-                    <mat-option *ngFor="let ledger of incomeLedgers" [value]="ledger.id">
+                    <mat-option *ngFor="let ledger of expenditureLedgers" [value]="ledger.id">
                       {{ledger.ledger_name}}
                     </mat-option>
                   </mat-select>
@@ -69,7 +69,7 @@
           </form>
           <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end" fxLayoutGap="10px" fxLayoutGap.xs="0" >
             <button mat-button (click) = "clearTransactionForm()"   mat-stroked-button>Clear</button>
-            <button mat-button (click)="saveIncomeTransaction()" [disabled]="!transactionForm.valid"   mat-stroked-button>Save</button>
+            <button mat-button (click)="saveExpenditureTransaction()" [disabled]="!transactionForm.valid"   mat-stroked-button>Save</button>
           </div>
         </div>
       </mat-card>
@@ -108,7 +108,7 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let item of incomeTransactions | filter:searchTerm | paginate: { itemsPerPage: pageSize, currentPage: p }; let indexOfElement = index;">
+          <tr *ngFor="let item of expenditureTransactions | filter:searchTerm | paginate: { itemsPerPage: pageSize, currentPage: p }; let indexOfElement = index;">
             <td class="text-center">{{(indexOfElement+1) | number:'3.0'}}</td>
             <td class="text-left">{{item.formatted_date}}</td>
             <td class="text-left">{{item.ledger_name}}</td>

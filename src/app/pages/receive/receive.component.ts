@@ -15,11 +15,11 @@ import {Transaction} from '../../models/transaction.model';
   styleUrls: ['./receive.component.scss']
 })
 export class ReceiveComponent implements OnInit {
-incomeLedgers: Ledger[] = [];
-assets: Asset[] = [];
-incomeTransactions: Transaction[] = [];
+  incomeLedgers: Ledger[] = [];
+  assets: Asset[] = [];
+  incomeTransactions: Transaction[] = [];
 
-transactionForm: FormGroup
+  transactionForm: FormGroup
   searchTerm: any;
   pageSize = 10;
   p = 1;

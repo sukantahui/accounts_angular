@@ -104,4 +104,12 @@ export class PaymentService {
     }
     return throwError(err);
   }
+
+  saveExpenditureTransaction(transactionFormValue) {
+    return this.http.post<{success: number, data: Transaction}>(GlobalVariable.BASE_API_URL + '/incomeTransactions', transactionFormValue)
+      .pipe(catchError(this.handleError), tap((response: {success: number, data: Transaction}) => {
+        this.expenditureTransactions.unshift( response.data);
+        this.expenditureTransactionSubject.next([...this.expenditureTransactions]);
+      }));
+  }
 }
