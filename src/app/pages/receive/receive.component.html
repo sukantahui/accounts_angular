@@ -35,6 +35,10 @@
                     </mat-option>
                   </mat-select>
                 </mat-form-field>
+                <mat-form-field fxFlex="50">
+                  <mat-label>Voucher Number</mat-label>
+                  <input matInput placeholder="Voucher Number" formControlName="voucher_number">
+                </mat-form-field>
               </div>
 
               <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start" fxLayoutGap="10px" fxLayoutGap.xs="0">
@@ -102,6 +106,7 @@
           <tr>
             <th class="w-5 text-center">SL.</th>
             <th class="w-10 text-sm-left">Date</th>
+            <th class="w-10 text-sm-left">Trn. No.</th>
             <th class="w-25 text-left">Purpose</th>
             <th class="w-15 text-left">Type</th>
             <th class="w-20 text-right">amount</th>
@@ -111,6 +116,7 @@
             <tr *ngFor="let item of incomeTransactions | filter:searchTerm | paginate: { itemsPerPage: pageSize, currentPage: p }; let indexOfElement = index;">
               <td class="text-center">{{(indexOfElement+1) | number:'3.0'}}</td>
               <td class="text-left">{{item.formatted_date}}</td>
+              <td class="text-left">{{item.transaction_number}}</td>
               <td class="text-left">{{item.ledger_name}}</td>
               <td class="text-left">{{item.assets_name}}</td>
               <td class="text-right">{{item.amount | currency:"&#8377;"}}</td>

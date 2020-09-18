@@ -37,6 +37,7 @@ import { DateAdapter } from '@angular/material/core';
 import { DateFormat } from './date-format';
 import { ReceiveComponent } from './pages/receive/receive.component';
 import { PaymentComponent } from './pages/payment/payment.component';
+import { TransactionReportComponent } from './pages/transaction-report/transaction-report.component';
 
 
 
@@ -57,6 +58,7 @@ import { PaymentComponent } from './pages/payment/payment.component';
     LoaidngRollerComponent,
     ReceiveComponent,
     PaymentComponent,
+    TransactionReportComponent,
   ],
   imports: [
     BrowserModule,

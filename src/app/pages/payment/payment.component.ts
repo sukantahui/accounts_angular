@@ -37,6 +37,12 @@ export class PaymentComponent implements OnInit {
     this.asstService.getAssetsUpdateListener().subscribe((data: Asset[]) => {
       this.assets = data;
     });
+
+    this.paymentService.expenditureTransactionSubject.subscribe(data => {
+      this.expenditureTransactions = data;
+    });
+    this.expenditureTransactions = this.paymentService.getTransactionDetails();
+
   } // end of ngonit
 
   handleTransactionDateChange($event: MatDatepickerInputEvent<unknown>) {

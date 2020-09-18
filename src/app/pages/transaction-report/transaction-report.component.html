@@ -1,0 +1,38 @@
+<div fxLayout.xs="column" fxLayout="row" fxFlexFill>
+  <div fxFlex="50" id="receive-left">
+    <div style="min-height: 92vh;">
+
+    </div>
+  </div>
+  <div fxFlex="50" id="receive-right">
+    <mat-card class="ml-2 mt-2 mr-2 form-mat-card" id="transaction-display-div">
+      <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>
+          <div fxLayout="row" fxLayoutAlign="end center" fxFlexFill>
+            Income Transactions
+          </div>
+        </mat-card-title>
+      </mat-card-header>
+
+    </mat-card>
+  </div>
+</div>
+
+<div fxLayout.xs="column" fxLayout="row" fxLayoutAlign="space-between stretch"  id="developer-div" *ngIf="true">
+  <div fxLayout="column" fxFlex="25" class="mr-1" style="background-color: #cdd20c">
+    <pre>
+      expenditureTransactions = {{expenditureTransactions | json}}
+    </pre>
+  </div>
+  <div fxLayout="column" fxFlex="50" class="mr-1" style="background-color: #f2f2f2">
+    <pre>
+        incomeTransactions = {{incomeTransactions | json}}
+    </pre>
+
+  </div>
+
+
+  <div fxLayout="column" fxFlex="25" class="mr-1" style="background-color: #f2f2f2">
+  </div>
+</div>

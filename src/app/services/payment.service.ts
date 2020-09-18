@@ -36,6 +36,13 @@ export class PaymentService {
         this.expenditureLedgerSubject.next([...this.expenditureLedgers]);
       })).subscribe();
 
+    this.http.get(GlobalVariable.BASE_API_URL + '/expenditureTransactions')
+      .pipe(catchError(this.handleError), tap((response: {success: number, data: Transaction[]}) => {
+        const {data} = response;
+        this.expenditureTransactions = data;
+        this.expenditureTransactionSubject.next([...this.expenditureTransactions]);
+      })).subscribe();
+
     // form creation
     const now = new Date();
     const val = formatDate(now, 'yyyy-MM-dd', 'en');
@@ -60,6 +67,22 @@ export class PaymentService {
     return [...this.expenditureLedgers];
   }
 
+  getTransactionsUpdateListener(){
+    return this.expenditureTransactionSubject.asObservable();
+  }
+
+  getTransactionDetails(){
+    return [...this.expenditureTransactions];
+  }
+
+  saveExpenditureTransaction(transactionFormValue) {
+    // tslint:disable-next-line:max-line-length
+    return this.http.post<{success: number, data: Transaction}>(GlobalVariable.BASE_API_URL + '/expenditureTransactions', transactionFormValue)
+      .pipe(catchError(this.handleError), tap((response: {success: number, data: Transaction}) => {
+        this.expenditureTransactions.unshift( response.data);
+        this.expenditureTransactionSubject.next([...this.expenditureTransactions]);
+      }));
+  }
 
   private handleError(errorResponse: HttpErrorResponse){
     // when your api server is not working
@@ -105,12 +128,5 @@ export class PaymentService {
     return throwError(err);
   }
 
-  saveExpenditureTransaction(transactionFormValue) {
-    // tslint:disable-next-line:max-line-length
-    return this.http.post<{success: number, data: Transaction}>(GlobalVariable.BASE_API_URL + '/expenditureTransactions', transactionFormValue)
-      .pipe(catchError(this.handleError), tap((response: {success: number, data: Transaction}) => {
-        this.expenditureTransactions.unshift( response.data);
-        this.expenditureTransactionSubject.next([...this.expenditureTransactions]);
-      }));
-  }
+
 }

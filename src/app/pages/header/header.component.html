@@ -39,10 +39,15 @@
             <span class="logo">Accounts</span>
           </button>
 
-          <button mat-button [matMenuTriggerFor]="menu">Menu</button>
-          <mat-menu #menu="matMenu">
+          <button mat-button [matMenuTriggerFor]="menuTransaction">Transaction</button>
+          <mat-menu #menuTransaction="matMenu">
             <button mat-menu-item [routerLink]="['/receive']" routerLinkActive="MyActiveMenu">Receive</button>
             <button mat-menu-item [routerLink]="['/payment']" routerLinkActive="MyActiveMenu">Payment</button>
+          </mat-menu>
+
+          <button mat-button [matMenuTriggerFor]="menuReport">Report</button>
+          <mat-menu #menuReport="matMenu">
+            <button mat-menu-item [routerLink]="['/transactions']" routerLinkActive="MyActiveMenu">Transactions</button>
           </mat-menu>
       </div>
       <button mat-button mat-raised-button *ngIf="isAuthenticated" (click)="logout()">Logout</button>
