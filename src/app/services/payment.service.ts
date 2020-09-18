@@ -29,7 +29,7 @@ export class PaymentService {
       return;
     }
 
-    this.http.get(GlobalVariable.BASE_API_URL + '/incomeLedgers')
+    this.http.get(GlobalVariable.BASE_API_URL + '/expenditureLedgers')
       .pipe(catchError(this.handleError), tap((response: {success: number, data: Ledger[]}) => {
         const {data} = response;
         this.expenditureLedgers = data;
