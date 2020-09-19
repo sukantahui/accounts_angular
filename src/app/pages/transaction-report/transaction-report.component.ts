@@ -11,6 +11,9 @@ import {ReceiveService} from "../../services/receive.service";
 export class TransactionReportComponent implements OnInit {
   expenditureTransactions: Transaction[] = [];
   incomeTransactions: Transaction[] = [];
+  searchTerm: any;
+  pageSize = 10;
+  p = 1;
   constructor(private paymentService: PaymentService, private receiveService: ReceiveService) { }
 
   ngOnInit(): void {

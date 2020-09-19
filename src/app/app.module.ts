@@ -38,6 +38,7 @@ import { DateFormat } from './date-format';
 import { ReceiveComponent } from './pages/receive/receive.component';
 import { PaymentComponent } from './pages/payment/payment.component';
 import { TransactionReportComponent } from './pages/transaction-report/transaction-report.component';
+import { IncomeExpenditureComponent } from './pages/income-expenditure/income-expenditure.component';
 
 
 
@@ -59,6 +60,7 @@ import { TransactionReportComponent } from './pages/transaction-report/transacti
     ReceiveComponent,
     PaymentComponent,
     TransactionReportComponent,
+    IncomeExpenditureComponent,
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,7 @@ import {OwnerComponent} from './pages/owner/owner.component';
 import {ReceiveComponent} from './pages/receive/receive.component';
 import {PaymentComponent} from './pages/payment/payment.component';
 import {TransactionReportComponent} from './pages/transaction-report/transaction-report.component';
+import {IncomeExpenditureComponent} from './pages/income-expenditure/income-expenditure.component';
 
 
 const routes: Routes = [
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'receive', canActivate:  [AuthGuardService], component: ReceiveComponent},
   {path: 'payment', canActivate:  [AuthGuardService], component: PaymentComponent},
   {path: 'transactions', canActivate:  [AuthGuardService], component: TransactionReportComponent},
+  {path: 'incomeAndExpenditure', canActivate:  [AuthGuardService], component: IncomeExpenditureComponent},
 ];
 
 @NgModule({

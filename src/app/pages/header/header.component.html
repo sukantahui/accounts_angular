@@ -39,15 +39,16 @@
             <span class="logo">Accounts</span>
           </button>
 
-          <button mat-button [matMenuTriggerFor]="menuTransaction">Transaction</button>
+          <button mat-button [matMenuTriggerFor]="menuTransaction"><mat-icon>add</mat-icon>Transaction</button>
           <mat-menu #menuTransaction="matMenu">
-            <button mat-menu-item [routerLink]="['/receive']" routerLinkActive="MyActiveMenu">Receive</button>
-            <button mat-menu-item [routerLink]="['/payment']" routerLinkActive="MyActiveMenu">Payment</button>
+            <button mat-menu-item [routerLink]="['/receive']" routerLinkActive="MyActiveMenu"><mat-icon>send</mat-icon>Receive</button>
+            <button mat-menu-item [routerLink]="['/payment']" routerLinkActive="MyActiveMenu"><mat-icon>send</mat-icon>Payment</button>
           </mat-menu>
 
-          <button mat-button [matMenuTriggerFor]="menuReport">Report</button>
+          <button mat-button [matMenuTriggerFor]="menuReport"><mat-icon>add</mat-icon>Report</button>
           <mat-menu #menuReport="matMenu">
             <button mat-menu-item [routerLink]="['/transactions']" routerLinkActive="MyActiveMenu">Transactions</button>
+            <button mat-menu-item [routerLink]="['/incomeAndExpenditure']" routerLinkActive="MyActiveMenu">Income & Expenditure</button>
           </mat-menu>
       </div>
       <button mat-button mat-raised-button *ngIf="isAuthenticated" (click)="logout()">Logout</button>
