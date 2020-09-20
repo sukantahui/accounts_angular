@@ -59,11 +59,6 @@ export class ReportService {
     }
     if (errorResponse.status === 401){
       alert(errorResponse.error.message);
-<<<<<<< HEAD
-      this.loginData = {isLoggedIn: false};
-      this.isLoggedInSubject.next({...this.loginData});
-=======
->>>>>>> b4e490c6e5cc5e09528293320dca3dc5572f06c7
       // this.router.navigate(['auth']).then(r => {});
       // location.reload();
     }
