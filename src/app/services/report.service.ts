@@ -42,6 +42,13 @@ export class ReportService {
     return this.transactionYearSubject.asObservable();
   }
 
+  getIncomeGroupTotalListByYearAndMonth(year: number, month: number){
+    return this.http.get(GlobalVariable.BASE_API_URL + '/incomeLedgersTotal/' + year + '/' + month )
+      .pipe(catchError(this.handleError), tap((response: {success: number, data: any}) => {
+          console.log(response);
+      }));
+  }
+
   private handleError(errorResponse: HttpErrorResponse){
     console.log(errorResponse);
     // when your api server is not working
@@ -50,7 +57,7 @@ export class ReportService {
     }
     if (errorResponse.status === 401){
       alert(errorResponse.error.message);
-      this.loginData.isLoggedIn = false;
+      this.loginData = {isLoggedIn: false};
       this.isLoggedInSubject.next({...this.loginData});
       // this.router.navigate(['auth']).then(r => {});
       // location.reload();
