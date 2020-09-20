@@ -6,7 +6,7 @@
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>
           <div fxLayout="row" fxLayoutAlign="end center" fxFlexFill>
-            Income Transactions
+            Expenditure Transactions
           </div>
         </mat-card-title>
       </mat-card-header>
@@ -35,7 +35,7 @@
           </thead>
           <tbody>
           <tr *ngFor="let item of expenditureTransactions | filter:searchTerm | paginate: { itemsPerPage: pageSize, currentPage: p }; let indexOfElement = index;">
-            <td class="text-center">{{(indexOfElement+1) | number:'3.0'}}</td>
+            <td class="text-center">{{(indexOfElement+1) | number:'2.0'}}</td>
             <td class="text-left">{{item.formatted_date}}</td>
             <td class="text-left">{{item.transaction_number}}</td>
             <td class="text-left">{{item.ledger_name}}</td>
@@ -74,7 +74,7 @@
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>
           <div fxLayout="row" fxLayoutAlign="end center" fxFlexFill>
-            Expenditure Transactions
+            Income Transactions
           </div>
         </mat-card-title>
       </mat-card-header>
@@ -103,7 +103,7 @@
           </thead>
           <tbody>
           <tr *ngFor="let item of incomeTransactions | filter:searchTerm | paginate: { itemsPerPage: pageSize, currentPage: p }; let indexOfElement = index;">
-            <td class="text-center">{{(indexOfElement+1) | number:'3.0'}}</td>
+            <td class="text-center">{{(indexOfElement+1) | number:'2.0'}}</td>
             <td class="text-left">{{item.formatted_date}}</td>
             <td class="text-left">{{item.transaction_number}}</td>
             <td class="text-left">{{item.ledger_name}}</td>

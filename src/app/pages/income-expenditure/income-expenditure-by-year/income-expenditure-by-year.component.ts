@@ -10,6 +10,7 @@ export class IncomeExpenditureByYearComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }
