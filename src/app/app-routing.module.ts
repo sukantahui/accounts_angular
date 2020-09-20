@@ -9,8 +9,8 @@ import {PaymentComponent} from './pages/payment/payment.component';
 import {TransactionReportComponent} from './pages/transaction-report/transaction-report.component';
 import {IncomeExpenditureComponent} from './pages/income-expenditure/income-expenditure.component';
 import {IncomeExpenditureHomeComponent} from './pages/income-expenditure/income-expenditure-home/income-expenditure-home.component';
-import {IncomeExpenditureByYearComponent} from "./pages/income-expenditure/income-expenditure-by-year/income-expenditure-by-year.component";
-import {IncomeExpenditureByMonthComponent} from "./pages/income-expenditure/income-expenditure-by-month/income-expenditure-by-month.component";
+import {IncomeExpenditureByYearComponent} from './pages/income-expenditure/income-expenditure-by-year/income-expenditure-by-year.component';
+import {IncomeExpenditureByMonthComponent} from './pages/income-expenditure/income-expenditure-by-month/income-expenditure-by-month.component';
 
 
 // @ts-ignore
@@ -24,8 +24,8 @@ const routes: Routes = [
   {path: 'incomeAndExpenditure', canActivate:  [AuthGuardService], component: IncomeExpenditureComponent,
     children: [
       {path: '', component: IncomeExpenditureHomeComponent, pathMatch: 'full'},
-      {path: 'incomeAndExpenditureByYear', component: IncomeExpenditureByYearComponent},
-      {path: 'incomeAndExpenditureByMonth', component: IncomeExpenditureByMonthComponent},
+      {path: 'incomeAndExpenditureByYear/:year', component: IncomeExpenditureByYearComponent},
+      {path: 'incomeAndExpenditureByMonth/:year/:month', component: IncomeExpenditureByMonthComponent},
     ]
   }
 ];

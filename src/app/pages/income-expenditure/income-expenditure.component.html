@@ -1,7 +1,7 @@
 <div fxLayout.xs="column" fxLayout="row" fxFlexFill>
   <div fxFlex="30" id="receive-left">
     <div style="min-height: 92vh;">
-      <div class="form-container">
+      <div class="form-container mt-5" >
         <form [formGroup] = reportSearchForm>
           <div class="container" fxLayout="column" fxLayout.xs="column" fxLayoutAlign="start" fxLayoutGap="10px" fxLayoutGap.xs="0">
             <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start" fxLayoutGap="10px" fxLayoutGap.xs="0">
@@ -26,11 +26,16 @@
           </div>
         </form>
         <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="end" fxLayoutGap="10px" fxLayoutGap.xs="0" >
-          <button mat-button    mat-stroked-button>Clear</button>
-          <button mat-button   mat-stroked-button>Save</button>
+          <button mat-button [routerLink]="['incomeAndExpenditureByYear',reportSearchForm.value.search_year]" [disabled]="!reportSearchForm.value.search_year"   mat-stroked-button>
+            Income and Expenditure by Year
+          </button>
+
+          <button mat-button [routerLink]="['incomeAndExpenditureByMonth',reportSearchForm.value.search_year,reportSearchForm.value.search_month]" [disabled]="!reportSearchForm.value.search_month"   mat-stroked-button>
+            Income and Expenditure by Month
+          </button>
         </div>
       </div>
-      <a [routerLink]="['incomeAndExpenditureByYear']">Route One</a>
+
     </div>
   </div>
   <div fxFlex="70" id="receive-right">
