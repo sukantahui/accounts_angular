@@ -6,7 +6,8 @@ import {Ledger} from '../models/ledger.model';
 import {Subject, throwError} from 'rxjs';
 import {TransactionYear} from '../models/transaction-year.model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Route, Router} from '@angular/router';
+import {ActivatedRoute, Route, Router} from '@angular/router';
+import {AuthService} from './auth.service';
 
 
 @Injectable({
@@ -17,10 +18,9 @@ export class ReportService {
   transactionYears: TransactionYear[] = [];
   transactionYearSubject = new Subject<TransactionYear[]>();
   reportSearchForm: FormGroup;
-  loginData = {isLoggedIn: true};
-  isLoggedInSubject = new Subject<{isLoggedIn: boolean}>();
 
-  constructor(private http: HttpClient, private router: Router) {
+
+  constructor(private http: HttpClient) {
     this.http.get(GlobalVariable.BASE_API_URL + '/transactionYears')
       .pipe(catchError(this.handleError), tap((response: {success: number, data: TransactionYear[]}) => {
         const {data} = response;
@@ -35,6 +35,7 @@ export class ReportService {
 
   }// end of constructor
 
+
   getTransactionYears(){
     return [...this.transactionYears];
   }
@@ -42,16 +43,15 @@ export class ReportService {
     return this.transactionYearSubject.asObservable();
   }
 
+
+
   private handleError(errorResponse: HttpErrorResponse){
-    console.log(errorResponse);
     // when your api server is not working
     if (errorResponse.status === 0){
       alert('your API is not working');
     }
     if (errorResponse.status === 401){
       alert(errorResponse.error.message);
-      this.loginData.isLoggedIn = false;
-      this.isLoggedInSubject.next({...this.loginData});
       // this.router.navigate(['auth']).then(r => {});
       // location.reload();
     }

@@ -27,6 +27,8 @@ export class IncomeExpenditureComponent implements OnInit {
     });
 
     this.reportSearchForm = this.reportService.reportSearchForm;
+
+
   }// end of ngOnIt
 
   selectMonthByYear($event: MatSelectChange) {
