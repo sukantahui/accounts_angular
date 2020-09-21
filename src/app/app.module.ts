@@ -42,6 +42,7 @@ import { IncomeExpenditureComponent } from './pages/income-expenditure/income-ex
 import { IncomeExpenditureHomeComponent } from './pages/income-expenditure/income-expenditure-home/income-expenditure-home.component';
 import { IncomeExpenditureByYearComponent } from './pages/income-expenditure/income-expenditure-by-year/income-expenditure-by-year.component';
 import { IncomeExpenditureByMonthComponent } from './pages/income-expenditure/income-expenditure-by-month/income-expenditure-by-month.component';
+import { LedgerComponent } from './pages/ledger/ledger.component';
 
 
 
@@ -67,6 +68,7 @@ import { IncomeExpenditureByMonthComponent } from './pages/income-expenditure/in
     IncomeExpenditureHomeComponent,
     IncomeExpenditureByYearComponent,
     IncomeExpenditureByMonthComponent,
+    LedgerComponent,
   ],
   imports: [
     BrowserModule,

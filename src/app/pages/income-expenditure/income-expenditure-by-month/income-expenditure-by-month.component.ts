@@ -19,7 +19,9 @@ export class IncomeExpenditureByMonthComponent implements OnInit {
   expenditureList: IncomeAndExpenditure[];
   incomeTotal = 0;
   expenditureTotal = 0;
-  surplus = 0;
+  surplus = -1;
+  months = ['', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+  deficit = -1;
   constructor(private route: ActivatedRoute, private reportService: ReportService) { }
 
   ngOnInit(): void {
@@ -33,7 +35,13 @@ export class IncomeExpenditureByMonthComponent implements OnInit {
               // @ts-ignore
               return total +  record.amount;
           }, 0);
-        this.surplus = this.incomeTotal - this.expenditureTotal;
+          if (this.incomeTotal >= this.expenditureTotal){
+            this.surplus = this.incomeTotal - this.expenditureTotal;
+            this.deficit = -1;
+          }else{
+            this.deficit = this.expenditureTotal - this.incomeTotal;
+            this.surplus = -1;
+          }
       });
       this.reportService.getExpenditureGroupTotalListByYearAndMonth(this.searchYear, this.searchMonth).subscribe(response => {
         this.expenditureList = response.data;
@@ -41,7 +49,13 @@ export class IncomeExpenditureByMonthComponent implements OnInit {
           // @ts-ignore
           return total +  record.amount;
         }, 0);
-        this.surplus = this.incomeTotal - this.expenditureTotal;
+        if (this.incomeTotal >= this.expenditureTotal){
+          this.surplus = this.incomeTotal - this.expenditureTotal;
+          this.deficit = -1;
+        }else{
+          this.deficit = this.expenditureTotal - this.incomeTotal;
+          this.surplus = -1;
+        }
       });
       // In a real app: dispatch action to load the details here.
     });

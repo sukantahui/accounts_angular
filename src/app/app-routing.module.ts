@@ -11,6 +11,7 @@ import {IncomeExpenditureComponent} from './pages/income-expenditure/income-expe
 import {IncomeExpenditureHomeComponent} from './pages/income-expenditure/income-expenditure-home/income-expenditure-home.component';
 import {IncomeExpenditureByYearComponent} from './pages/income-expenditure/income-expenditure-by-year/income-expenditure-by-year.component';
 import {IncomeExpenditureByMonthComponent} from './pages/income-expenditure/income-expenditure-by-month/income-expenditure-by-month.component';
+import {LedgerComponent} from './pages/ledger/ledger.component';
 
 
 // @ts-ignore
@@ -20,6 +21,7 @@ const routes: Routes = [
   {path: 'owner', canActivate:  [AuthGuardService], component: OwnerComponent},
   {path: 'receive', canActivate:  [AuthGuardService], component: ReceiveComponent},
   {path: 'payment', canActivate:  [AuthGuardService], component: PaymentComponent},
+  {path: 'ledger', canActivate:  [AuthGuardService], component: LedgerComponent},
   {path: 'transactions', canActivate:  [AuthGuardService], component: TransactionReportComponent},
   {path: 'incomeAndExpenditure', canActivate:  [AuthGuardService], component: IncomeExpenditureComponent,
     children: [

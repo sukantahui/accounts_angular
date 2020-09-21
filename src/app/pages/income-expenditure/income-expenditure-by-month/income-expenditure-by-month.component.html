@@ -1,10 +1,10 @@
 <div fxLayout.xs="column" fxLayout="column">
-  <h1 fxFlex="100">Income and Expenditure for the month of</h1>
-  <h3 fxFlex="100">Income and Expenditure for the month of</h3>
+  <h1 fxFlex="100">Income and Expenditure</h1>
+  <h3 fxFlex="100">Income and Expenditure for the month of {{months[searchMonth]}}, {{searchYear}}</h3>
 </div>
 
 <div fxLayout.xs="column" fxLayout="row">
-  <div fxFlex="50" id="receive-left">
+  <div fxFlex="50" id="expenditure-left">
     <div style="min-height: 30vh;">
       <table class="table" id="expenditure-transaction-table">
         <thead>
@@ -24,7 +24,7 @@
       </table>
     </div>
   </div>
-  <div fxFlex="50" id="receive-right">
+  <div fxFlex="50" id="income-right">
     <div style="min-height: 30vh;">
       <table class="table" id="income-transaction-table">
         <thead>
@@ -47,28 +47,28 @@
 </div>
 <div fxLayout.xs="column" fxLayout="row">
   <div fxFlex="40">
-    Surplus: Income over Expenditure
+    <span class="pl-5" *ngIf="surplus>0">Surplus: Income over Expenditure</span>
   </div>
-  <div fxFlex="10" >
-    <span *ngIf="surplus>0">{{surplus | currency:"&#8377;"}}</span>
+  <div fxFlex="10" fxLayoutAlign="end center">
+    <span class="surplus" *ngIf="surplus>0">{{surplus | currency:"&#8377;"}}</span>
   </div>
   <div fxFlex="40">
-    Deficit: Expenditure over Income
+    <span class="pl-5"  *ngIf="surplus<=0">Deficit: Expenditure over Income</span>
   </div>
-  <div fxFlex="10" >
-    <span *ngIf="surplus<0">{{surplus | currency:"&#8377;"}}</span>
+  <div fxFlex="10" fxLayoutAlign="end center">
+    <span class="surplus" *ngIf="surplus<0">{{deficit | currency:"&#8377;"}}</span>
   </div>
 </div>
 <div fxLayout.xs="column" fxLayout="row">
   <div fxFlex="40">
   </div>
   <div fxFlex="10" class="total-div">
-    {{expenditureTotal | currency:"&#8377;"}}
+    {{(expenditureTotal>incomeTotal ? expenditureTotal : incomeTotal) | currency:"&#8377;"}}
   </div>
   <div fxFlex="40">
   </div>
   <div fxFlex="10" class="total-div">
-      {{incomeTotal | currency:"&#8377;"}}
+      {{(expenditureTotal>incomeTotal ? expenditureTotal : incomeTotal)  | currency:"&#8377;"}}
   </div>
 </div>
 
