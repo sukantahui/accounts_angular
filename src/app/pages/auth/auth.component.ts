@@ -32,7 +32,6 @@ export class AuthComponent implements OnInit {
 
     authObserable = this.authService.login({email: form.value.email, password: passwordMd5});
     authObserable.subscribe(response => {
-      console.log(response);
       // tslint:disable-next-line:triple-equals
       if (response.success === 1){
         this.isLoading = false;
@@ -49,7 +48,5 @@ export class AuthComponent implements OnInit {
       console.log(error);
       this.isLoading = false;
     });
-
-    // form.resetForm();
   }
 }

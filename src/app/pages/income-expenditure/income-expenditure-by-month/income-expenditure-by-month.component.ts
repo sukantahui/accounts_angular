@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ReportService} from '../../../services/report.service';
-
+export interface IncomeAndExpenditure {
+  ledger_id: number;
+  ledger_name: string;
+  amount: number;
+}
 @Component({
   selector: 'app-income-expenditure-by-month',
   templateUrl: './income-expenditure-by-month.component.html',
@@ -11,6 +15,8 @@ export class IncomeExpenditureByMonthComponent implements OnInit {
   searchMonth: number;
   private sub: any;
   searchYear: number;
+  incomeList: IncomeAndExpenditure[];
+  expenditureList: IncomeAndExpenditure[];
   constructor(private route: ActivatedRoute, private reportService: ReportService) { }
 
   ngOnInit(): void {

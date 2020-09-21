@@ -46,7 +46,7 @@ export class AuthService {
     return this.http.post<AuthResponseData>(GlobalVariable.BASE_API_URL + '/login', loginData)
       .pipe(catchError(this.handleError), tap(resData => {
         // tslint:disable-next-line:max-line-length
-          if (resData.success === 1){
+        if (resData.success === 1){
             const user = new User(resData.user.id,
               resData.user.person_name,
               resData.token.original.access_token,
