@@ -65,7 +65,8 @@ export class AuthService {
     this.user.next(null);
     localStorage.removeItem('user');
     this.router.navigate(['/auth']);
-    // location.reload();
+    location.reload();
+    this.router.navigate(['/auth']);
   }
 
 

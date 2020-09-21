@@ -50,6 +50,12 @@ export class ReportService {
           console.log(response);
       }));
   }
+  getExpenditureGroupTotalListByYearAndMonth(year: number, month: number){
+    return this.http.get(GlobalVariable.BASE_API_URL + '/expenditureLedgersTotal/' + year + '/' + month )
+      .pipe(catchError(this.handleError), tap((response: {success: number, data: any}) => {
+        console.log(response);
+      }));
+  }
 
 
   private handleError(errorResponse: HttpErrorResponse){
