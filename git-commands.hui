@@ -43,5 +43,10 @@ git log --oneline --graph --decorate --all
 #step 1: Checkout to master
     git checkout master
 #step 2: get merge new-branch
+# this was first forward merge, check the log
+git log --oneline --graph --decorate --all
+
+#now we will evade first forward merge
+
 
 
