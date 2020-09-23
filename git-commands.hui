@@ -52,6 +52,9 @@ git merge new-branch --no-ff
 #use following command to check the changes
 git log --oneline --graph --decorate --all
 
-
+#if you have changes in branch and master and like to merge the branch to master use following command from master
+git merge new-branch -m "merging and committing"
+# changes in branch
+# changes in branch
 
 
