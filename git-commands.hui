@@ -37,3 +37,11 @@ git log --oneline --graph --decorate
 #showing all log
 git log --oneline --graph --decorate --all
 
+
+#suppose you are in new-branch and changes are made in few files, commit them, if you need add files also, now we
+# are going to merge it to master.
+#step 1: Checkout to master
+    git checkout master
+#step 2: get merge new-branch
+
+
