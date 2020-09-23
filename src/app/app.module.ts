@@ -43,6 +43,8 @@ import { IncomeExpenditureHomeComponent } from './pages/income-expenditure/incom
 import { IncomeExpenditureByYearComponent } from './pages/income-expenditure/income-expenditure-by-year/income-expenditure-by-year.component';
 import { IncomeExpenditureByMonthComponent } from './pages/income-expenditure/income-expenditure-by-month/income-expenditure-by-month.component';
 import { LedgerComponent } from './pages/ledger/ledger.component';
+import { CashBookComponent } from './pages/cash-book/cash-book.component';
+import { CashBookHomeComponent } from './pages/cash-book/cash-book-home/cash-book-home.component';
 
 
 
@@ -69,6 +71,8 @@ import { LedgerComponent } from './pages/ledger/ledger.component';
     IncomeExpenditureByYearComponent,
     IncomeExpenditureByMonthComponent,
     LedgerComponent,
+    CashBookComponent,
+    CashBookHomeComponent,
   ],
   imports: [
     BrowserModule,

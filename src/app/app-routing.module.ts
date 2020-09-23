@@ -12,6 +12,8 @@ import {IncomeExpenditureHomeComponent} from './pages/income-expenditure/income-
 import {IncomeExpenditureByYearComponent} from './pages/income-expenditure/income-expenditure-by-year/income-expenditure-by-year.component';
 import {IncomeExpenditureByMonthComponent} from './pages/income-expenditure/income-expenditure-by-month/income-expenditure-by-month.component';
 import {LedgerComponent} from './pages/ledger/ledger.component';
+import {CashBookComponent} from "./pages/cash-book/cash-book.component";
+import {CashBookHomeComponent} from "./pages/cash-book/cash-book-home/cash-book-home.component";
 
 
 // @ts-ignore
@@ -28,6 +30,11 @@ const routes: Routes = [
       {path: '', component: IncomeExpenditureHomeComponent, pathMatch: 'full'},
       {path: 'incomeAndExpenditureByYear/:year', component: IncomeExpenditureByYearComponent},
       {path: 'incomeAndExpenditureByMonth/:year/:month', component: IncomeExpenditureByMonthComponent},
+    ]
+  },
+  {path: 'cashBook', canActivate:  [AuthGuardService], component: CashBookComponent,
+    children: [
+      {path: '', component: CashBookHomeComponent, pathMatch: 'full'},
     ]
   }
 ];

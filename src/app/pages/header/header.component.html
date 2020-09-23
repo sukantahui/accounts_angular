@@ -54,6 +54,7 @@
           <mat-menu #menuReport="matMenu">
             <button mat-menu-item [routerLink]="['/transactions']" routerLinkActive="MyActiveMenu">Transactions</button>
             <button mat-menu-item [routerLink]="['/incomeAndExpenditure']" routerLinkActive="MyActiveMenu">Income & Expenditure</button>
+            <button mat-menu-item [routerLink]="['/cashBook']" routerLinkActive="MyActiveMenu">Cash Book</button>
           </mat-menu>
       </div>
       <button mat-button mat-raised-button *ngIf="isAuthenticated" (click)="logout()">Logout</button>
