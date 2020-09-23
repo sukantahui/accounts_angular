@@ -42,6 +42,10 @@ git log --oneline --graph --decorate --all
 # are going to merge it to master.
 #step 1: Checkout to master
     git checkout master
-#step 2: get merge new-branch
+#step 2: merge new-branch to master, this is fast forward merge
+    git merge new-branch
+
+
+
 
 
