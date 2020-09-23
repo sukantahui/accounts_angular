@@ -1,0 +1,39 @@
+#List of Branches, local and remote branches
+git branch -a
+
+#List show all local branches
+git branch
+
+#creating new branch
+git branch <branch name>
+
+#switch to a branch
+git checkout <branch name>
+
+#Creating a new branch and switched to the branch by a single command
+git checkout -b <new branch>
+
+#showing the log
+git log --oneline --decorate
+
+#rename a branch
+git branch -m <old name> <new name>
+
+#delete branch
+git branch -d <branch name>
+
+#check the differences between two branches, here with master
+git diff master <branch name>
+
+#to check the difference visually
+git diftool master <branch name>
+
+# merging a branch to master, let you are in master branch
+git merge <branch name>
+
+#show log with change log
+git log --oneline --graph --decorate
+
+#showing all log
+git log --oneline --graph --decorate --all
+
