@@ -47,7 +47,10 @@ git log --oneline --graph --decorate --all
 # this was first forward merge, check the log
 git log --oneline --graph --decorate --all
 
-#now we will evade first forward merge
+#now we will evade first forward merge, it will preserve the graph
+git merge new-branch --no-ff
+#use following command to check the changes
+git log --oneline --graph --decorate --all
 
 
 
