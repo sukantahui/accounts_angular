@@ -74,7 +74,7 @@ export class PaymentComponent implements OnInit {
               icon: 'success',
               title: 'Expenditure saved',
               showConfirmButton: false,
-              timer: 3000
+              timer: 1000
             }).then(r => {
               this.transactionForm.patchValue({ledger_id: null, asset_id: 1, amount: 0, particulars: null, voucher_number: null});
             });
