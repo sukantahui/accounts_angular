@@ -3,11 +3,25 @@ import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {GlobalVariable} from '../shared/global';
 import {catchError, tap} from 'rxjs/operators';
 import {Ledger} from '../models/ledger.model';
-import {Subject, throwError} from 'rxjs';
+import {of, Subject, throwError} from 'rxjs';
 import {TransactionYear} from '../models/transaction-year.model';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ActivatedRoute, Route, Router} from '@angular/router';
 import {AuthService} from './auth.service';
+export interface Book {
+  id: number;
+  name: string;
+  writer: string;
+}
+
+const ALL_BOOKS: Book[] = [
+  { id: 101, name: 'Godaan', writer: 'Premchand' },
+  { id: 102, name: 'Karmabhoomi', writer: 'Premchand' },
+  { id: 103, name: 'Pinjar', writer: 'Amrita Pritam' },
+  { id: 104, name: 'Kore Kagaz', writer: 'Amrita Pritam' },
+  { id: 105, name: 'Nirmala', writer: 'Premchand' },
+  { id: 106, name: 'Seva Sadan', writer: 'Premchand' }
+];
 
 
 @Injectable({
@@ -99,4 +113,13 @@ export class ReportService {
     }
     return throwError(err);
   }
+
+
+  getAllBooks() {
+    return of(ALL_BOOKS);
+  }
+  saveBook(books) {
+    console.log(JSON.stringify(books));
+  }
+
 }
