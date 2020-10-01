@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Book, ReportService} from '../../services/report.service';
-import {FormBuilder, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith, switchMap} from 'rxjs/operators';
 
@@ -11,14 +11,18 @@ import {map, startWith, switchMap} from 'rxjs/operators';
 })
 export class CashBookComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private bookService: ReportService) { }
+
   get book() {
     return this.bookForm.get('book');
   }
   $allBooks: Observable<Book[]>;
   $filteredBooks: Observable<Book[]>;
-  bookForm = this.formBuilder.group({
-    book: [null, Validators.required]
+  bookForm = new FormGroup({
+    book: new FormControl(null, [Validators.required])
   });
+  // bookForm = this.formBuilder.group({
+  //   book: [null, Validators.required]
+  // });
 
   ngOnInit(): void {
     this.$allBooks = this.bookService.getAllBooks();
@@ -42,7 +46,7 @@ export class CashBookComponent implements OnInit {
   }
 
   displayFn(book?: Book): string | undefined {
-    return book ? book.name : undefined;
+    return (book ? book.name : undefined);
   }
   onFormSubmit() {
     this.bookService.saveBook(this.bookForm.value);
@@ -51,6 +55,4 @@ export class CashBookComponent implements OnInit {
   resetForm() {
     this.bookForm.reset();
   }
-
-
 }
