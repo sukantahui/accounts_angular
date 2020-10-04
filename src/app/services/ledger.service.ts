@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {GlobalVariable} from '../shared/global';
-import {catchError, tap} from 'rxjs/operators';
+import {catchError, delay, tap} from 'rxjs/operators';
 import {Ledger} from '../models/ledger.model';
 import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 import {Router} from '@angular/router';
-import {Subject, throwError} from 'rxjs';
-import {Transaction} from "../models/transaction.model";
+import {Observable, of, Subject, throwError} from 'rxjs';
+import {Person} from './data.service';
+// import {Transaction} from "../models/transaction.model";
 
 
 @Injectable({
@@ -42,6 +43,15 @@ export class LedgerService {
       ledger_name: new FormControl(null, [Validators.required])
     });
   } // end of constructor
+  // testing
+  getExpLedgers(term: string = null): Observable<Ledger[]> {
+    let items = this.expenditureLedgers;
+    console.log(items);
+    if (term) {
+      items = items.filter(x => x.ledger_name.toLocaleLowerCase().indexOf(term.toLocaleLowerCase()) > -1);
+    }
+    return of(items).pipe(delay(500));
+  }
 
   getIncomeLedgersUpdateListener(){
     return this.incomeLedgerSubject.asObservable();
