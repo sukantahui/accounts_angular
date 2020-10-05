@@ -45,6 +45,7 @@ import { IncomeExpenditureByMonthComponent } from './pages/income-expenditure/in
 import { LedgerComponent } from './pages/ledger/ledger.component';
 import { CashBookComponent } from './pages/cash-book/cash-book.component';
 import { CashBookHomeComponent } from './pages/cash-book/cash-book-home/cash-book-home.component';
+import {NgSelectModule} from '@ng-select/ng-select';
 
 
 
@@ -88,7 +89,8 @@ import { CashBookHomeComponent } from './pages/cash-book/cash-book-home/cash-boo
     HttpClientModule,
     NgxPrintModule,
     Ng2SearchPipeModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgSelectModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorInterceptor, multi: true},
               {provide: DateAdapter, useClass: DateFormat} ],

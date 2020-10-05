@@ -8,6 +8,11 @@ import {MatDatepickerInputEvent} from '@angular/material/datepicker';
 import {formatDate} from '@angular/common';
 import Swal from 'sweetalert2';
 import {AssetService} from '../../services/asset.service';
+import {Observable} from 'rxjs';
+import {DataService, Person} from '../../services/data.service';
+import {LedgerService} from '../../services/ledger.service';
+import {HttpClient} from '@angular/common/http';
+import {GlobalVariable} from '../../shared/global';
 
 @Component({
   selector: 'app-payment',
@@ -23,9 +28,25 @@ export class PaymentComponent implements OnInit {
   searchTerm: any;
   pageSize = 10;
   p = 1;
-  constructor(private paymentService: PaymentService, private asstService: AssetService) {}
+
+  people$: Observable<Person[]>;
+  expLedgers$: Observable<Ledger[]>;
+  selectedPersonId = '5a15b13c36e7a7f00cf0d7cb';
+  expenditureID = '';
+  data = [];
+
+  // tslint:disable-next-line:max-line-length
+  constructor(private http: HttpClient, private paymentService: PaymentService, private ledgerService: LedgerService, private asstService: AssetService, private dataService: DataService) {
+    this.http.get(GlobalVariable.BASE_API_URL + '/expenditureLedgers').subscribe((response: {success: number, data: any[]}) => {
+      // this.data.push(response.data);
+      this.data = response.data;
+      console.log(this.data);
+    }, error => console.error(error));
+  }
 
   ngOnInit(): void {
+    this.people$ = this.dataService.getPeople();
+    this.expLedgers$ = this.ledgerService.getExpLedgers();
     this.expenditureLedgers = this.paymentService.getExpenditureLedgers();
     this.paymentService.getExpenditureLedgersUpdateListener().subscribe(data => {
       this.expenditureLedgers = data;
@@ -74,7 +95,7 @@ export class PaymentComponent implements OnInit {
               icon: 'success',
               title: 'Expenditure saved',
               showConfirmButton: false,
-              timer: 3000
+              timer: 1000
             }).then(r => {
               this.transactionForm.patchValue({ledger_id: null, asset_id: 1, amount: 0, particulars: null, voucher_number: null});
             });
