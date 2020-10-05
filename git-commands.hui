@@ -1,3 +1,8 @@
+
+//github page deployment check
+https://github.com/<user>/<repo>/deployments
+
+
 #List of Branches, local and remote branches
 git branch -a
 
