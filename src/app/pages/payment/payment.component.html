@@ -27,15 +27,6 @@
 
               </div>
               <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start" fxLayoutGap="10px" fxLayoutGap.xs="0">
-<!--                <mat-form-field fxFlex="50">-->
-<!--                  <mat-label>Expenditure</mat-label>-->
-<!--                  <mat-select  formControlName="ledger_id">-->
-<!--                    <mat-option *ngFor="let ledger of expenditureLedgers" [value]="ledger.id">-->
-<!--                      {{ledger.ledger_name}}-->
-<!--                    </mat-option>-->
-<!--                  </mat-select>-->
-<!--                </mat-form-field>-->
-
                   <ng-select [items]="expenditureLedgers" fxFlex="50"
                              bindLabel="ledger_name"
                              class="custom"
@@ -49,6 +40,15 @@
                 </mat-form-field>
               </div>
 
+
+
+              <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start" fxLayoutGap="10px" fxLayoutGap.xs="0">
+                <mat-form-field fxFlex="50">
+                  <mat-label>Amount</mat-label>
+                  <input matInput type="number" placeholder="Invoice" (click)="$event.target.select()" formControlName="amount">
+                </mat-form-field>
+              </div>
+
               <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start" fxLayoutGap="10px" fxLayoutGap.xs="0">
                 <mat-form-field fxFlex="50">
                   <mat-label>Transaction Through</mat-label>
@@ -57,13 +57,6 @@
                       {{asset.assets_name}}
                     </mat-option>
                   </mat-select>
-                </mat-form-field>
-              </div>
-
-              <div class="container" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start" fxLayoutGap="10px" fxLayoutGap.xs="0">
-                <mat-form-field fxFlex="50">
-                  <mat-label>Amount</mat-label>
-                  <input matInput type="number" placeholder="Invoice" (click)="$event.target.select()" formControlName="amount">
                 </mat-form-field>
               </div>
 
