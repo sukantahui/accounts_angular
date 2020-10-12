@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {CashBookService} from '../../../services/cash-book.service';
 import {CashBook} from '../../../models/cash-book.model';
+import {HttpClient} from '@angular/common/http';
+import {GlobalVariable} from '../../../shared/global';
+import {catchError, tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-cash-book-home',
@@ -9,13 +11,13 @@ import {CashBook} from '../../../models/cash-book.model';
 })
 export class CashBookHomeComponent implements OnInit {
   cashBookList: CashBook[] = [];
-  constructor(private cashBookService: CashBookService) { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.cashBookList = this.cashBookService.getCashBookList();
-    this.cashBookService.getCashBookListListener().subscribe(data => {
-       this.cashBookList = data;
-    });
+    this.http.get(GlobalVariable.BASE_API_URL + '/cashBook')
+      .subscribe((response: {success: number, data: CashBook[] }) => {
+        this.cashBookList = response.data;
+      });
   }
 
 }

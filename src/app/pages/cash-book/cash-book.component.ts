@@ -10,7 +10,10 @@ import {map, startWith, switchMap} from 'rxjs/operators';
   styleUrls: ['./cash-book.component.scss']
 })
 export class CashBookComponent implements OnInit {
-  constructor(private formBuilder: FormBuilder, private bookService: ReportService) { }
+
+  constructor(private formBuilder: FormBuilder, private bookService: ReportService) {
+    console.log('Constructor working');
+  }
 
   get book() {
     return this.bookForm.get('book');
